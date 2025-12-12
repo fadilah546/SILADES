@@ -1,0 +1,97 @@
+body {
+      background: #f7f9fc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .wrapper {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 260px;
+      background: linear-gradient(rgb(21, 84, 201),#0d6efd);
+      min-height: 100vh;
+      color: #fff;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .menu-item:hover,
+    .active {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .menu-item i {
+      margin-right: 12px;
+    }
+
+    .profile-box {
+      padding: 15px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+    }
+
+    .content {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .card-option {
+      border: 2px solid #d4e1ff;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .card-option:hover {
+      border-color: #0d6efd;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .icon-box {
+      font-size: 40px;
+      color: #0d6efd;
+      margin-bottom: 10px;
+    }
+
+    .counter-card {
+      background: linear-gradient(rgb(21, 84, 201),#0d6efd);
+      color: white;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .counter-card:hover {
+      border-color: #0d6efd;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-3px);
+    }
+    .pengajuan-card{
+      cursor: pointer;
+      transition: 0.2s; 
+    }
+    .pengajuan-card:hover{
+      border-color: #0d6efd;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-3px);
+    }
+    .col-5-card {
+    width: 20%; 
+    padding: 10px;
+}
+
