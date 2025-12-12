@@ -1,0 +1,146 @@
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleUp {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Navbar */
+    .navbar {
+      opacity: 0;
+      animation: fadeDown 0.8s ease forwards;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .hero img {
+      width: 90%;
+      opacity: 0;
+      transform: scale(0.9);
+      animation: scaleUp 1s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    .hero h1,
+    .hero p,
+    .hero .btn {
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .hero h1 {
+      animation-delay: 0.6s;
+    }
+
+    .hero p {
+      animation-delay: 0.8s;
+    }
+
+    .hero .btn {
+      animation-delay: 1s;
+    }
+
+    /* Service Cards */
+    .service-card {
+      background-color: rgba(0, 85, 255, 0.7);
+      color: #fff;
+      border-radius: 15px;
+      padding: 2rem 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-card i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .services-title {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 1s;
+    }
+
+    .service-card:nth-child(1) {
+      animation-delay: 1.2s;
+    }
+
+    .service-card:nth-child(2) {
+      animation-delay: 1.4s;
+    }
+
+    .service-card:nth-child(3) {
+      animation-delay: 1.6s;
+    }
+
+    /* Card Surat */
+    .card-option {
+      border: 2px solid #d4e1ff;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .card-option:hover {
+      border-color: #0d6efd;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .card-option .icon-box {
+      font-size: 40px;
+      color: #0d6efd;
+      margin-bottom: 10px;
+    }
