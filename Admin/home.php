@@ -12,7 +12,6 @@
 
    <!--begin::App Content-->
    <?php 
-   $id = 1; 
    $totals = [
        'total_pengajuan' => 0,
        'Diajukan' => 0,
@@ -24,7 +23,6 @@
    $query_total = "
        SELECT status, COUNT(*) as jumlah 
        FROM ajuan 
-       WHERE id_user = $id 
        GROUP BY status
    ";
    $result_total = $koneksi->query($query_total);
@@ -85,33 +83,51 @@
                    'Selesai' => 'success',
                    default => 'danger'
                };
-       ?>
-       <a class="text-decoration-none text-dark" href="?p=detail&id_ajuan=<?= $d['id_ajuan'] ?>">
-         <div class="card pengajuan-card shadow-sm mb-3">
-             <div class="card-body">
-               <div class="d-flex justify-content-between align-items-center">
-                 <div>
-                   <h6 class="fw-bold mb-0"><i class="bi bi-file-earmark-text"></i> <?= $d['nama_surat'] ?></h6>
-                   <small class="text-muted">Diajukan pada <?= date('d-M-Y', strtotime($d['created_at'])) ?></small>
-                 </div>
-                 <span class="badge bg-<?= $warna ?> text-white rounded-pill px-3 py-2">
-                   <?= $d['status'] ?>
-                 </span>
-               </div>
-               <hr>
-               <div class="row">
-                 <div class="col-md-6">
-                   <small><strong>Nama:</strong> <?= $d['Nama'] ?></small><br>
-                   <small><strong>Alamat:</strong> <?= $d['Alamat'] ?></small>
-                 </div>
-               </div>
-             </div>
-         </div>
-       </a>
-       <?php
-           }
-       }
-       ?>
+                $nik = $d['NIK'];
+  $cek = $koneksi->query("SELECT nik FROM warga WHERE nik = '$nik'");
+?>
+  <a class="text-decoration-none text-dark" href="?p=detail&id_ajuan=<?= $d['id_ajuan'] ?>">
+    <div class="card pengajuan-card shadow-sm mb-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="fw-bold mb-0"><i class="bi bi-file-earmark-text"></i> <?= $d['nama_surat'] ?></h6>
+            <small class="text-muted">Diajukan pada <?php echo date('d-M-Y', strtotime($d['created_at'])) ?></small><br>
+            <?php
+            if ($cek->num_rows == 0) {
+              echo "<small class='text-danger'>NIK belum terdaftar di data warga</small>";
+            }else{
+              echo "<small class='text-success'>NIK terdaftar di data warga</small>"; 
+            }
+            ?>
+          </div>
+          <?php
+          if ($d['status'] == 'Diajukan') {
+            $warna = 'warning';
+          } elseif ($d['status'] == 'Diproses') {
+            $warna = 'primary';
+          } elseif ($d['status'] == 'Selesai') {
+            $warna = 'success';
+          } else {
+            $warna = 'danger';
+          }
+          ?>
+          <span class="badge bg-<?= $warna ?> text-white rounded-pill px-3 py-2">
+            <?php echo $d['status'] ?>
+          </span>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <small><strong>Nama:</strong> <?= $d['Nama'] ?></small><br>
+            <small><strong>Alamat:</strong> <?= $d['Alamat'] ?></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+<?php }} ?>
+
 
      </div>
    </div>
