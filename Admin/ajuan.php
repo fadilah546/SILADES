@@ -1,27 +1,26 @@
 <?php
-$id = 1;
 $kategori = 'semua';
-$query = "SELECT * FROM ajuan WHERE id_user = $id";
+$query = "SELECT * FROM ajuan";
 if (isset($_POST['submit'])) {
   $kategori = $_POST['kategori'];
   if ($kategori == 'diajukan') {
-    $query = "SELECT * FROM ajuan WHERE status = 'Diajukan' AND id_user = $id";
+    $query = "SELECT * FROM ajuan WHERE status = 'Diajukan'";
   } elseif ($kategori == 'diproses') {
-    $query = "SELECT * FROM ajuan WHERE status = 'Diproses' AND id_user = $id";
+    $query = "SELECT * FROM ajuan WHERE status = 'Diproses'";
   } elseif ($kategori == 'selesai') {
-    $query = "SELECT * FROM ajuan WHERE status = 'Selesai' AND id_user = $id";
+    $query = "SELECT * FROM ajuan WHERE status = 'Selesai'";
   } elseif ($kategori == 'ditolak') {
-    $query = "SELECT * FROM ajuan WHERE status = 'Ditolak' AND id_user = $id";
-  }elseif ($kategori == 'terbaru') {
-    $query = "SELECT * FROM ajuan WHERE id_user = $id ORDER BY created_at DESC";
+    $query = "SELECT * FROM ajuan WHERE status = 'Ditolak'";
+  } elseif ($kategori == 'terbaru') {
+    $query = "SELECT * FROM ajuan ORDER BY created_at DESC";
   } else {
-    $query = "SELECT * FROM ajuan WHERE id_user = $id";
+    $query = "SELECT * FROM ajuan";
   }
 }
 ?>
 <div class="d-flex justify-content-between align-items-center">
   <div class="row">
-    <h2 class="fw-bold mb-2">Ajuan Saya</h2>
+    <h2 class="fw-bold mb-2">Ajuan</h2>
     <p class="text-muted mb-4">Kelola ajuan warga</p>
   </div>
   <form action="" method="POST">
@@ -43,52 +42,59 @@ if (isset($_POST['submit'])) {
   </form>
 </div>
 
-
-
-<?php 
+<?php
 $data = $koneksi->query($query);
-if($data->num_rows == 0){ 
+if ($data->num_rows == 0) {
   echo "Tidak ada ajuan";
 }
-foreach($data as $d){
+foreach ($data as $d) {
   $id_surat = $d['id_surat'];
   $surat = $koneksi->query("SELECT * FROM surat WHERE id_surat = $id_surat");
   $s = $surat->fetch_assoc();
+  $nik = $d['NIK'];
+  $cek = $koneksi->query("SELECT nik FROM warga WHERE nik = '$nik'");
 ?>
-<a class="text-decoration-none text-dark" href="?p=detail&id_ajuan=<?= $d['id_ajuan'] ?>">
-<div class ="card pengajuan-card shadow-sm mb-3">
-    <div class="card-body">
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <h6 class="fw-bold mb-0"><i class="bi bi-file-earmark-text"></i>  <?= $s['nama_surat'] ?></h6>
-          <small class="text-muted">Diajukan pada <?php echo date('d-M-Y', strtotime($d['created_at']))?></small>
-        </div>
-        <?php 
-        if($d['status']=='Diajukan'){
-          $warna = 'warning';
-        }elseif($d['status']=='Diproses'){
-          $warna = 'primary';
-        }elseif($d['status']=='Selesai'){
-          $warna = 'success';
-        }else{
-          $warna = 'danger';
-        }
-        ?>
-        <span class="badge bg-<?= $warna ?> text-white rounded-pill px-3 py-2">
+  <a class="text-decoration-none text-dark" href="?p=detail&id_ajuan=<?= $d['id_ajuan'] ?>">
+    <div class="card pengajuan-card shadow-sm mb-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="fw-bold mb-0"><i class="bi bi-file-earmark-text"></i> <?= $s['nama_surat'] ?></h6>
+            <small class="text-muted">Diajukan pada <?php echo date('d-M-Y', strtotime($d['created_at'])) ?></small><br>
+            <?php
+            if ($cek->num_rows == 0) {
+              echo "<small class='text-danger'>NIK belum terdaftar di data warga</small>";
+            }else{
+              echo "<small class='text-success'>NIK terdaftar di data warga</small>"; 
+            }
+            ?>
+          </div>
+          <?php
+          if ($d['status'] == 'Diajukan') {
+            $warna = 'warning';
+          } elseif ($d['status'] == 'Diproses') {
+            $warna = 'primary';
+          } elseif ($d['status'] == 'Selesai') {
+            $warna = 'success';
+          } else {
+            $warna = 'danger';
+          }
+          ?>
+          <span class="badge bg-<?= $warna ?> text-white rounded-pill px-3 py-2">
             <?php echo $d['status'] ?>
-        </span>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-6">
-          <small><strong>Nama:</strong> <?= $d['Nama'] ?></small><br>
-          <small><strong>Alamat:</strong> <?= $d['Alamat'] ?></small>
+          </span>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <small><strong>Nama:</strong> <?= $d['Nama'] ?></small><br>
+            <small><strong>Alamat:</strong> <?= $d['Alamat'] ?></small>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</a>
-  <?php } ?>
+  </a>
+<?php } ?>
 
 <!--end::App Content-->
 </main>
