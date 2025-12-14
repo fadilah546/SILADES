@@ -40,6 +40,10 @@ $id_surat = $d['id_surat'];
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">NIK</label>
+                            <input type="text" class="form-control" value="<?= $d['NIK'] ?>" readonly>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Tempat Lahir</label>
                             <input type="text" class="form-control" value="<?= $d['Tempat_lahir'] ?>" readonly>
                         </div>
@@ -71,18 +75,34 @@ $id_surat = $d['id_surat'];
                             <label class="form-label">Surat Pengantar</label><br>
                             <img src="../uploads/<?= $d['Surat_pengantar'] ?>" alt="Surat Pengantar" class="img-fluid" style="max-width: 300px; border-radius: 8px;">
                         </div>
-                        <div class="mb-5">
-                            <label class="form-label">Pengambilan surat</label><br>
+                        <div class="mb-3">
+                            <label class="form-label">Pengambilan File</label>
                             <input type="text" class="form-control" value="<?= $d['Pengambilan'] ?>" readonly>
                         </div>
+                        <?php if (!empty($d['Tanggal'])) { ?>
+                            <div class="mb-3">
+                                <label class="form-label">Tanggal Pengambilan Surat</label>
+                                <input type="text" class="form-control" value="Surat dapat diambil pada tanggal <?= date('d-m-Y', strtotime($d['Tanggal'])) ?>" readonly>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($d['file'])) { ?>
+                            <div class="mb-3">
+                                <label class="form-label">File Surat Keterangan</label>
+                                <input type="text" class="form-control" value="<?= $d['file'] ?>" readonly>
+                                <a href="../uploads/file/<?= $d['file'] ?>" download class="btn btn-primary mt-2">
+                                    Download File
+                                </a>
+
+                            </div>
+                        <?php } ?>
                         <div class="mb-3">
-                            <?php if($d['status']=='Diproses' or $d['status']=='Selesai' ){
+                            <?php if ($d['status'] == 'Diproses' or $d['status'] == 'Selesai') {
                             }
-                            if($d['status']=='Diajukan' or $d['status']=='Ditolak' ){
-                                ?>
-                                <a class="btn btn-warning" href="?p=edit&id_ajuan=<?= $id_ajuan ?>" role="button">Edit</a>                         
-                            <a class="btn btn-danger" href="#" role="button">Hapus</a>
-                           <?php }?>
+                            if ($d['status'] == 'Diajukan' or $d['status'] == 'Ditolak') {
+                            ?>
+                                <a class="btn btn-warning" href="?p=edit&id_ajuan=<?= $id_ajuan ?>" role="button">Edit</a>
+                                <a class="btn btn-danger" href="?p=hapus&id_ajuan=<?= $id_ajuan ?>" role="button" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
+                            <?php } ?>
                         </div>
 
                     <?php
@@ -91,6 +111,10 @@ $id_surat = $d['id_surat'];
                         <div class="mb-3">
                             <label class="form-label">Nama</label>
                             <input type="text" class="form-control" value="<?= $d['Nama'] ?>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">NIK</label>
+                            <input type="text" class="form-control" value="<?= $d['NIK'] ?>" readonly>
                         </div>
 
                         <div class="mb-3">
@@ -129,14 +153,35 @@ $id_surat = $d['id_surat'];
                             <label class="form-label">Pas Foto</label><br>
                             <img src="../uploads/<?= $d['Pas_foto'] ?>" alt="Pas Foto" class="img-fluid" style="max-width: 300px; border-radius: 8px;">
                         </div>
-                        <div class="mb-5">
-                            <label class="form-label">Pengambilan surat</label><br>
+                        <div class="mb-3">
+                            <label class="form-label">Pengambilan File</label>
                             <input type="text" class="form-control" value="<?= $d['Pengambilan'] ?>" readonly>
                         </div>
+                        <?php if (!empty($d['Tanggal'])) { ?>
+                            <div class="mb-3">
+                                <label class="form-label">Tanggal Pengambilan Surat</label>
+                                <input type="text" class="form-control" value="Surat dapat diambil pada tanggal <?= date('d-m-Y', strtotime($d['Tanggal'])) ?>" readonly>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($d['file'])) { ?>
+                            <div class="mb-3">
+                                <label class="form-label">File Surat Keterangan</label>
+                                <input type="text" class="form-control" value="<?= $d['file'] ?>" readonly>
+                                <a href="../uploads/file/<?= $d['file'] ?>" download class="btn btn-primary mt-2">
+                                    Download File
+                                </a>
+
+                            </div>
+                        <?php } ?>
                         <div class="mb-3">
-                            <a class="btn btn-warning" href="?p=edit&id_ajuan=<?= $id_ajuan ?>" role="button">Edit</a>
-                            <a class="btn btn-danger" href="#" role="button">Hapus</a>
-                        </div>   
+                            <?php if ($d['status'] == 'Diproses' or $d['status'] == 'Selesai') {
+                            }
+                            if ($d['status'] == 'Diajukan' or $d['status'] == 'Ditolak') {
+                            ?>
+                                <a class="btn btn-warning" href="?p=edit&id_ajuan=<?= $id_ajuan ?>" role="button">Edit</a>
+                                <a class="btn btn-danger" href="?p=hapus&id_ajuan=<?= $id_ajuan ?>" role="button" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
+                            <?php } ?>
+                        </div>
                     <?php
                     } elseif ($id_surat == 3) {
                     ?>
@@ -205,14 +250,36 @@ $id_surat = $d['id_surat'];
                             <label class="form-label">Foto Lokasi Usaha</label><br>
                             <img src="../uploads/<?= $d['Foto_persyaratan'] ?>" alt="Foto Persyaratan" class="img-fluid" style="max-width: 300px; border-radius: 8px;">
                         </div>
-                        <div class="mb-5">
-                            <label class="form-label">Pengambilan surat</label><br>
+                        <div class="mb-3">
+                            <label class="form-label">Pengambilan File</label>
                             <input type="text" class="form-control" value="<?= $d['Pengambilan'] ?>" readonly>
                         </div>
+                        <?php if (!empty($d['Tanggal'])) { ?>
+                            <div class="mb-3">
+                                <label class="form-label">Tanggal Pengambilan Surat</label>
+                                <input type="text" class="form-control" value="Surat dapat diambil pada tanggal <?= date('d-m-Y', strtotime($d['Tanggal'])) ?>" readonly>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($d['file'])) { ?>
+                            <div class="mb-3">
+                                <label class="form-label">File Surat Keterangan</label>
+                                <input type="text" class="form-control" value="<?= $d['file'] ?>" readonly>
+                                <a href="../uploads/file/<?= $d['file'] ?>" download class="btn btn-primary mt-2">
+                                    Download File
+                                </a>
+
+                            </div>
+                        <?php } ?>
+
                         <div class="mb-3">
-                            <a class="btn btn-warning" href="?p=edit&id_ajuan=<?= $id_ajuan ?>" role="button">Edit</a>
-                            <a class="btn btn-danger" href="#" role="button">Hapus</a>
-                        </div>   
+                            <?php if ($d['status'] == 'Diproses' or $d['status'] == 'Selesai') {
+                            }
+                            if ($d['status'] == 'Diajukan' or $d['status'] == 'Ditolak') {
+                            ?>
+                                <a class="btn btn-warning" href="?p=edit&id_ajuan=<?= $id_ajuan ?>" role="button">Edit</a>
+                                <a class="btn btn-danger" href="?p=hapus&id_ajuan=<?= $id_ajuan ?>" role="button" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
+                            <?php } ?>
+                        </div>
                     <?php
                     }
                     ?>
