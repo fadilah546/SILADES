@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between align-items-center">
   <div class="row">
     <h2 class="fw-bold mb-2">Data Warga</h2>
-    <p class="text-muted mb-4">Kelola ajuan warga</p>
+    <p class="text-muted mb-4">Data warga desa</p>
   </div>
 </div>
 
@@ -41,4 +41,5 @@ foreach($data as $d){
 </table>
 
 <!--end::App Content-->
+
 </main>
