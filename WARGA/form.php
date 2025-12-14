@@ -1,4 +1,4 @@
-<?php
+ <?php
     $id = $_GET['id'];
     if ($id == 1) {
         $surat = "Surat Keterangan Tidak Mampu";
@@ -48,12 +48,16 @@
                                  <input name="nama" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
                              </div>
                              <div class="mb-3">
+                                 <label for="exampleFormControlInput1" class="form-label">NIK</label>
+                                 <input name="nik" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan NIK anda">
+                                </div>
+                             <div class="mb-3">
                                  <label for="exampleFormControlInput1" class="form-label">Tempat Lahir</label>
-                                 <input name="tempat_lahir" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
+                                 <input name="tempat_lahir" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan tempat lahir anda">
                              </div>
                              <div class="mb-3">
                                  <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir</label>
-                                 <input name="tanggal_lahir" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
+                                 <input name="tanggal_lahir" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Masukan tanggal lahir anda">
                              </div>
                              <label for="exampleFormControlInput1" class="form-label">Jenis Kelamin</label>
                              <select class="form-select mb-3" aria-label="Default select example" name="gender">
@@ -115,12 +119,16 @@
                                  <input name="nama" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
                              </div>
                              <div class="mb-3">
+                                 <label for="exampleFormControlInput1" class="form-label">NIK</label>
+                                 <input name="nik" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan NIK anda">
+                                </div>
+                             <div class="mb-3">
                                  <label for="exampleFormControlInput1" class="form-label">Tempat Lahir</label>
-                                 <input name="tempat_lahir" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
+                                 <input name="tempat_lahir" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan tempat lahir anda">
                              </div>
                              <div class="mb-3">
                                  <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir</label>
-                                 <input name="tanggal_lahir" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
+                                 <input name="tanggal_lahir" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Masukan tanggal lahir anda">
                              </div>
                              <label for="exampleFormControlInput1" class="form-label">Jenis Kelamin</label>
                              <select class="form-select mb-3" aria-label="Default select example" name="gender">
@@ -188,11 +196,11 @@
                              </div>
                              <div class="mb-3">
                                  <label for="exampleFormControlInput1" class="form-label">Tempat Lahir</label>
-                                 <input name="tempat_lahir" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
+                                 <input name="tempat_lahir" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan tempat lahir anda">
                              </div>
                              <div class="mb-3">
                                  <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir</label>
-                                 <input name="tanggal_lahir" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Masukan nama lengkap anda">
+                                 <input name="tanggal_lahir" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Masukan tanggal lahir anda">
                              </div>
                              <label for="exampleFormControlInput1" class="form-label">Jenis Kelamin</label>
                              <select class="form-select mb-3" aria-label="Default select example" name="gender">
