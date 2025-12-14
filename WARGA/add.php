@@ -1,20 +1,26 @@
 <?php
+session_start();
 require_once "../config.php";
 function uploadFile($fieldname)
 {
+    if ($_FILES[$fieldname]['error'] !== 0) {
+        return null;
+    }
     $filename = $_FILES[$fieldname]['name'];
     $tmp = $_FILES[$fieldname]['tmp_name'];
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
-    $newname = 'img_' . time() . '.' . $ext;
-    $destination = "../uploads/" . $newname;
-    move_uploaded_file($tmp, $destination);
+    $newname = 'img_' . time() . '_' . uniqid() . '.' . $ext;
+
+    move_uploaded_file($tmp, "../uploads/" . $newname);
     return $newname;
 }
 
+
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $id_user = 1;
+    $id_user = $_SESSION['id_user'];
     $nama = $_POST['nama'];
+    $nik = $_POST['nik'];
     $tempat_lahir = $_POST['tempat_lahir'];
     $tanggal_lahir = $_POST['tanggal_lahir'];
     $jenis_kelamin = $_POST['gender'];
@@ -25,9 +31,9 @@ if (isset($_POST['submit'])) {
     if ($id == 1) {
         $kk = uploadFile('kk');
         $pengantar = uploadFile('pengantar');
-        $query = "INSERT into ajuan set id_surat = $id,id_user= $id_user, Nama = '$nama', Tempat_lahir = '$tempat_lahir', 
+        $query = "INSERT into ajuan set id_surat = $id,id_user= $id_user, Nama = '$nama',NIK = '$nik', Tempat_lahir = '$tempat_lahir', 
         Tanggal_lahir = '$tanggal_lahir', Jenis_kelamin = '$jenis_kelamin', Agama = '$agama', Alamat = '$alamat',
-        KTP = '$ktp', KK = '$kk', Surat_pengantar = '$pengantar', Pengambilan = '$pengambilan' WHERE id_ajuan = $id_ajuan";
+        KTP = '$ktp', KK = '$kk', Surat_pengantar = '$pengantar', Pengambilan = '$pengambilan'";
         $insert = $koneksi->query($query);
         if ($insert) {
             echo "<script>
@@ -43,7 +49,7 @@ if (isset($_POST['submit'])) {
         $kk = uploadFile('kk');
         $akte = uploadFile('akte');
         $pas_foto = uploadFile('pas_foto');
-        $query = "INSERT into ajuan set id_surat = $id,id_user=$id_user, Nama = '$nama', Tempat_lahir = '$tempat_lahir', 
+        $query = "INSERT into ajuan set id_surat = $id,id_user=$id_user, Nama = '$nama',NIK = '$nik', Tempat_lahir = '$tempat_lahir', 
         Tanggal_lahir = '$tanggal_lahir', Jenis_kelamin = '$jenis_kelamin', Agama = '$agama', Alamat = '$alamat',
         KTP = '$ktp', KK = '$kk',Akte='$akte',Pas_foto = '$pas_foto',Pengambilan = '$pengambilan'";
         $insert = $koneksi->query($query);
@@ -59,7 +65,6 @@ if (isset($_POST['submit'])) {
         }
     } elseif ($id == 3) {
         $pekerjaan = $_POST['pekerjaan'];
-        $nik = $_POST['nik'];
         $nama_usaha = $_POST['nama_usaha'];
         $lama_usaha = $_POST['lama_usaha'];
         $alamat_usaha = $_POST['alamat_usaha'];
@@ -105,7 +110,7 @@ if (isset($_POST['submit'])) {
     '$ktp',
     '$kk',
     '$pengantar',
-    '$lokasi_usaha'
+    '$lokasi_usaha',
     '$pengambilan'
 )";
 
