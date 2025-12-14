@@ -50,7 +50,7 @@
          $counters = [
            ['label'=>'Total Pengajuan','icon'=>'bi-file-earmark-text','value'=>$totals['total_pengajuan']],
            ['label'=>'Menunggu Verifikasi','icon'=>'bi-clock-history','value'=>$totals['Diajukan']],
-           ['label'=>'Diverifikasi','icon'=>'bi-gear','value'=>$totals['Diproses']],
+           ['label'=>'Diproses','icon'=>'bi-gear','value'=>$totals['Diproses']],
            ['label'=>'Selesai','icon'=>'bi-check-circle','value'=>$totals['Selesai']],
          ];
 
