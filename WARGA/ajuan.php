@@ -1,5 +1,23 @@
 <?php
-$id = 1;
+$msg = $_GET['msg'] ?? '';
+
+if ($msg == 'deleted') {
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Berhasil!</strong> Data ajuan berhasil dihapus.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+} elseif ($msg == 'error') {
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Gagal!</strong> Terjadi kesalahan saat menghapus data.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+} elseif ($msg == 'invalid') {
+    echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Invalid!</strong> Data tidak valid atau tidak ditemukan.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+}
+$id = $_SESSION['id_user'];
 $kategori = 'semua';
 $query = "SELECT * FROM ajuan WHERE id_user = $id";
 if (isset($_POST['submit'])) {
@@ -61,7 +79,10 @@ foreach($data as $d){
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <h6 class="fw-bold mb-0"><i class="bi bi-file-earmark-text"></i>  <?= $s['nama_surat'] ?></h6>
-          <small class="text-muted">Diajukan pada <?php echo date('d-M-Y', strtotime($d['created_at']))?></small>
+          <small class="text-muted">Diajukan pada <?php echo date('d-M-Y', strtotime($d['created_at']))?></small><br>
+          <?php if (!empty($d['Tanggal'])){ 
+                    echo " <small class='text-muted'>Surat dapat diambil pada tanggal " . date('d-M-Y', strtotime($d['Tanggal'])) . "</small>";
+                   } ?>
         </div>
         <?php 
         if($d['status']=='Diajukan'){
@@ -78,7 +99,7 @@ foreach($data as $d){
             <?php echo $d['status'] ?>
         </span>
       </div>
-      <hr>
+      <hr>     
       <div class="row">
         <div class="col-md-6">
           <small><strong>Nama:</strong> <?= $d['Nama'] ?></small><br>
